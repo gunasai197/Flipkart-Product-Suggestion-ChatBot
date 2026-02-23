@@ -1,120 +1,167 @@
 ## WELCOME TO FLIPKART PRODUCTION RECOMMENDER CHATBOT
 
+
 GET STARTED BROO now
 
-Demo :
+---
 
-image
-1. Initial Setup
-Push code to GitHub
-Push your project code to a GitHub repository.
+Demo  : 
 
-Create a Dockerfile
-Write a Dockerfile in the root of your project to containerize the app.
+<img width="817" height="795" alt="image" src="https://github.com/user-attachments/assets/c476cb8c-2635-41bf-9833-2d07e0b04039" />
 
-Create Kubernetes Deployemtn file
-Make a file named 'llmops-k8s.yaml'
+---
 
-Create a VM Instance on Google Cloud
+### 1. Initial Setup
 
-Go to VM Instances and click "Create Instance"
-Name: ``
-Machine Type:
-Series: E2
-Preset: Standard
-Memory: 16 GB RAM
-Boot Disk:
-Change size to 256 GB
-Image: Select Ubuntu 24.04 LTS
-Networking:
-Enable HTTP and HTTPS traffic
-Create the Instance
+- **Push code to GitHub**  
+  Push your project code to a GitHub repository.
 
-Connect to the VM
+- **Create a Dockerfile**  
+  Write a `Dockerfile` in the root of your project to containerize the app.
 
-Use the SSH option provided to connect to the VM from the browser.
-2. Configure VM Instance
-Clone your GitHub repo
+- **Create Kubernetes Deployemtn file**  
+  Make a file named 'llmops-k8s.yaml' 
 
-git clone https://github.com/gunasai197/Flipkart-Product-Suggestion-ChatBot.git
-ls
-cd TESTING-9
-ls  # You should see the contents of your project
-Install Docker
+- **Create a VM Instance on Google Cloud**
 
-Search: "Install Docker on Ubuntu"
+  - Go to VM Instances and click **"Create Instance"**
+  - Name: ``
+  - Machine Type:
+    - Series: `E2`
+    - Preset: `Standard`
+    - Memory: `16 GB RAM`
+  - Boot Disk:
+    - Change size to `256 GB`
+    - Image: Select **Ubuntu 24.04 LTS**
+  - Networking:
+    - Enable HTTP and HTTPS traffic
 
-Open the first official Docker website (docs.docker.com)
+- **Create the Instance**
 
-Scroll down and copy the first big command block and paste into your VM terminal
+- **Connect to the VM**
+  - Use the **SSH** option provided to connect to the VM from the browser.
 
-Then copy and paste the second command block
 
-Then run the third command to test Docker:
 
-docker run hello-world
-Run Docker without sudo
+### 2. Configure VM Instance
 
-On the same page, scroll to: "Post-installation steps for Linux"
-Paste all 4 commands one by one to allow Docker without sudo
-Last command is for testing
-Enable Docker to start on boot
+- **Clone your GitHub repo**
 
-On the same page, scroll down to: "Configure Docker to start on boot"
+  ```bash
+  git clone https://github.com/gunasai197/Flipkart-Product-Suggestion-ChatBot.git
+  ls
+  cd TESTING-9
+  ls  # You should see the contents of your project
+  ```
 
-Copy and paste the command block (2 commands):
+- **Install Docker**
 
-sudo systemctl enable docker.service
-sudo systemctl enable containerd.service
-Verify Docker Setup
+  - Search: "Install Docker on Ubuntu"
+  - Open the first official Docker website (docs.docker.com)
+  - Scroll down and copy the **first big command block** and paste into your VM terminal
+  - Then copy and paste the **second command block**
+  - Then run the **third command** to test Docker:
 
-systemctl status docker       # You should see "active (running)"
-docker ps                     # No container should be running
-docker ps -a                 # Should show "hello-world" exited container
-3. Configure Minikube inside VM
-Install Minikube
+    ```bash
+    docker run hello-world
+    ```
 
-Open browser and search: Install Minikube
-Open the first official site (minikube.sigs.k8s.io) with minikube start on it
-Choose:
-OS: Linux
-Architecture: x86
-Select Binary download
-Reminder: You have already done this on Windows, so you're familiar with how Minikube works
-Install Minikube Binary on VM
+- **Run Docker without sudo**
 
-Copy and paste the installation commands from the website into your VM terminal
-Start Minikube Cluster
+  - On the same page, scroll to: **"Post-installation steps for Linux"**
+  - Paste all 4 commands one by one to allow Docker without `sudo`
+  - Last command is for testing
 
-minikube start
-This uses Docker internally, which is why Docker was installed first
-Install kubectl
+- **Enable Docker to start on boot**
 
-Search: Install kubectl
-Run the first command with curl from the official Kubernetes docs
-Run the second command to validate the download
-Instead of installing manually, go to the Snap section (below on the same page)
-sudo snap install kubectl --classic
-Verify installation:
+  - On the same page, scroll down to: **"Configure Docker to start on boot"**
+  - Copy and paste the command block (2 commands):
 
-kubectl version --client
-Check Minikube Status
+    ```bash
+    sudo systemctl enable docker.service
+    sudo systemctl enable containerd.service
+    ```
 
-minikube status         # Should show all components running
-kubectl get nodes       # Should show minikube node
-kubectl cluster-info    # Cluster info
-docker ps               # Minikube container should be running
-4. Interlink your Github on VSCode and on VM
+- **Verify Docker Setup**
+
+  ```bash
+  systemctl status docker       # You should see "active (running)"
+  docker ps                     # No container should be running
+  docker ps -a                 # Should show "hello-world" exited container
+  ```
+
+
+### 3. Configure Minikube inside VM
+
+- **Install Minikube**
+
+  - Open browser and search: `Install Minikube`
+  - Open the first official site (minikube.sigs.k8s.io) with `minikube start` on it
+  - Choose:
+    - **OS:** Linux
+    - **Architecture:** *x86*
+    - Select **Binary download**
+  - Reminder: You have already done this on Windows, so you're familiar with how Minikube works
+
+- **Install Minikube Binary on VM**
+
+  - Copy and paste the installation commands from the website into your VM terminal
+
+- **Start Minikube Cluster**
+
+  ```bash
+  minikube start
+  ```
+
+  - This uses Docker internally, which is why Docker was installed first
+
+- **Install kubectl**
+
+  - Search: `Install kubectl`
+  - Run the first command with `curl` from the official Kubernetes docs
+  - Run the second command to validate the download
+  - Instead of installing manually, go to the **Snap section** (below on the same page)
+
+  ```bash
+  sudo snap install kubectl --classic
+  ```
+
+  - Verify installation:
+
+    ```bash
+    kubectl version --client
+    ```
+
+- **Check Minikube Status**
+
+  ```bash
+  minikube status         # Should show all components running
+  kubectl get nodes       # Should show minikube node
+  kubectl cluster-info    # Cluster info
+  docker ps               # Minikube container should be running
+  ```
+
+### 4. Interlink your Github on VSCode and on VM
+
+```bash
 git config --global user.email "gyrogodnon@gmail.com"
 git config --global user.name "data-guru0"
 
 git add .
 git commit -m "commit"
 git push origin main
-When prompted:
-Username: data-guru0
-Password: GitHub token (paste, it's invisible)
-5. Build and Deploy your APP on VM
+```
+
+- When prompted:
+  - **Username**: `data-guru0`
+  - **Password**: GitHub token (paste, it's invisible)
+
+---
+
+
+### 5. Build and Deploy your APP on VM
+
+```bash
 ## Point Docker to Minikube
 eval $(minikube docker-env)
 
@@ -141,7 +188,12 @@ kubectl port-forward svc/flask-service 5000:80 --address 0.0.0.0
 
 ## Now copy external ip and :5000 and see ur app there....
 
-6. PROMETHEUS AND GRAFANA MONITORING OF YOUR APP
+
+```
+
+### 6. PROMETHEUS AND GRAFANA MONITORING OF YOUR APP
+
+```bash
 ## Open another VM terminal 
 
 kubectl create namespace monitoring
@@ -185,3 +237,4 @@ Green success mesaage shown....
 
 Now make a dashboard for different visualization
 See course video for that....
+```
